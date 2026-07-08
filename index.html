@@ -954,7 +954,7 @@
     <div class="container">
         <!-- 顶部导航 -->
         <div class="header">
-            <div class="logo">✦ 星轨物语</div>
+            <div class="logo" onclick="switchPage('home')" style="cursor: pointer;">✦ 星轨物语</div>
             <div class="resources">
                 <div class="resource">
                     <div class="resource-icon">✦</div>
@@ -1349,8 +1349,8 @@
                     { text: '你缓缓睁开眼睛，映入眼帘的是一片璀璨的星空。', choices: null },
                     { text: '"你终于醒了。"一个温柔的声音传来。你转头看去，一位少女正微笑着看着你。', choices: null },
                     { text: '"我叫艾莉娅，是星轨研究院的研究员。你……是从哪里来的？"', choices: [
-                        { text: '我不记得了', next: 0 },
-                        { text: '我来自另一个世界', next: 1 }
+                        { text: '我不记得了', next: 3 },
+                        { text: '我来自另一个世界', next: 3 }
                     ]},
                     { text: '艾莉娅若有所思地看着你："看来，你是被星轨选中的人。跟我来吧，我带你去见院长。"', choices: null },
                     { text: '你跟随艾莉娅穿过长长的走廊，墙壁上闪烁着神秘的符文。', choices: null },
@@ -1860,7 +1860,14 @@
             document.querySelectorAll('.exchange-tab').forEach(t => {
                 t.classList.remove('active');
             });
-            event.currentTarget.classList.add('active');
+
+            // 根据tab名称找到对应的按钮并激活
+            const tabButtons = document.querySelectorAll('.exchange-tab');
+            const tabIndex = tab === 'shop' ? 0 : 1;
+            if (tabButtons[tabIndex]) {
+                tabButtons[tabIndex].classList.add('active');
+            }
+
             renderExchange(tab);
         }
 
