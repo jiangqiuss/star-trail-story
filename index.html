@@ -911,6 +911,231 @@
             border-color: #e74c3c;
         }
 
+        /* ==================== 新增动画效果 ==================== */
+
+        /* 抽卡闪光动画 */
+        @keyframes gachaFlash {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .gacha-flash {
+            animation: gachaFlash 0.5s ease-out;
+        }
+
+        /* 卡牌翻转动画 */
+        @keyframes cardFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            100% { transform: perspective(1000px) rotateY(180deg); }
+        }
+
+        .card-flip {
+            animation: cardFlip 0.6s ease-in-out;
+        }
+
+        /* 粒子爆炸效果 */
+        @keyframes particleExplosion {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .particle-explosion {
+            animation: particleExplosion 1s ease-out forwards;
+        }
+
+        /* 文字打字机效果 */
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typewriter 2s steps(40, end);
+        }
+
+        /* 脉冲发光效果 */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent); }
+            50% { box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent2); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        /* 摇晃动画 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* 弹跳动画 */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        .bounce {
+            animation: bounce 1s ease infinite;
+        }
+
+        /* 渐变流动效果 */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-flow {
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        /* 旋转缩放效果 */
+        @keyframes rotateScale {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        .rotate-scale {
+            animation: rotateScale 2s linear infinite;
+        }
+
+        /* 淡入上浮效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* 淡出下沉效果 */
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .fade-out-down {
+            animation: fadeOutDown 0.5s ease-in;
+        }
+
+        /* 成就弹窗样式 */
+        .achievement-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            z-index: 2000;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .achievement-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .achievement-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .achievement-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .achievement-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* 加载动画 */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 成就系统样式 */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .achievement-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .achievement-item.unlocked {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .achievement-item.locked {
+            opacity: 0.5;
+            filter: grayscale(100%);
+        }
+
+        .achievement-item-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .achievement-item-name {
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .achievement-item-desc {
+            font-size: 0.75em;
+            color: var(--text-secondary);
+        }
+
         /* ==================== 响应式 ==================== */
         @media (max-width: 400px) {
             .container {
@@ -937,20 +1162,6 @@
     <div class="stars" id="stars"></div>
 
     <!-- 主容器 -->
-    <!-- 欢迎界面 -->
-    <div id="welcome-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0a0e27, #1a1f4e); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999;">
-        <div class="stars" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-        <div style="position: relative; z-index: 1; text-align: center;">
-            <div style="font-size: 4em; margin-bottom: 20px;">✦</div>
-            <h1 style="font-size: 2.5em; margin-bottom: 10px; background: linear-gradient(135deg, #ffd700, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">星轨物语</h1>
-            <p style="color: #8888aa; font-size: 1.2em; margin-bottom: 40px;">记忆碎片 · 时空之旅</p>
-            <button onclick="startGame()" style="padding: 18px 60px; background: linear-gradient(135deg, #ffd700, #ffaa00); color: #0a0e27; border: none; border-radius: 30px; font-size: 1.2em; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);">
-                开始游戏
-            </button>
-            <p style="color: #666; font-size: 0.9em; margin-top: 20px;">探索散落在时空中的记忆碎片</p>
-        </div>
-    </div>
-
     <div class="container">
         <!-- 顶部导航 -->
         <div class="header">
@@ -974,7 +1185,7 @@
                 <div class="home-subtitle">记忆碎片 · 时空之旅</div>
             </div>
 
-            <div class="quick-actions">
+            <div class="quick-actions" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="action-card" onclick="switchPage('gacha')">
                     <div class="action-icon">🎴</div>
                     <div class="action-title">抽取记忆</div>
@@ -994,6 +1205,16 @@
                     <div class="action-icon">🏪</div>
                     <div class="action-title">时空交易所</div>
                     <div class="action-desc">交换碎片</div>
+                </div>
+                <div class="action-card" onclick="switchPage('achievements')">
+                    <div class="action-icon">🏆</div>
+                    <div class="action-title">成就殿堂</div>
+                    <div class="action-desc">我的成就</div>
+                </div>
+                <div class="action-card" onclick="showSettings()">
+                    <div class="action-icon">⚙️</div>
+                    <div class="action-title">设置</div>
+                    <div class="action-desc">游戏设置</div>
                 </div>
             </div>
 
@@ -1113,6 +1334,16 @@
                 <!-- 交易所内容将在这里动态生成 -->
             </div>
         </div>
+
+        <!-- 成就页面 -->
+        <div class="page" id="page-achievements">
+            <div class="cards-header">
+                <div class="cards-title">✦ 成就殿堂</div>
+            </div>
+            <div class="achievements-grid" id="achievements-grid">
+                <!-- 成就列表将在这里动态生成 -->
+            </div>
+        </div>
     </div>
 
     <!-- 底部导航 -->
@@ -1136,6 +1367,10 @@
         <div class="nav-item" onclick="switchPage('exchange')">
             <div class="nav-icon">🏪</div>
             <div class="nav-text">交易所</div>
+        </div>
+        <div class="nav-item" onclick="switchPage('achievements')">
+            <div class="nav-icon">🏆</div>
+            <div class="nav-text">成就</div>
         </div>
     </div>
 
@@ -1336,6 +1571,159 @@
                 rarity: 'n',
                 story: '记忆会随着时间而褪色，最终变成尘埃。但即使是尘埃，也曾经是珍贵的回忆……',
                 emoji: '🌫️'
+            },
+            // ==================== 新增卡牌 ====================
+            // UR 卡牌 - 扩展
+            {
+                id: 'ur_004',
+                name: '命运之轮',
+                rarity: 'ur',
+                story: '当命运之轮开始转动，所有的可能性都会在你面前展开。但要小心，每一次选择都有代价……',
+                emoji: '🎡'
+            },
+            {
+                id: 'ur_005',
+                name: '永恒之书',
+                rarity: 'ur',
+                story: '这本书记载着宇宙诞生以来的所有故事。据说，读懂它的人将获得超越时间的力量……',
+                emoji: '📕'
+            },
+            // SSR 卡牌 - 扩展
+            {
+                id: 'ssr_006',
+                name: '暗影之舞',
+                rarity: 'ssr',
+                story: '在黑暗中，她翩翩起舞。每一个动作都带着致命的优雅，每一次旋转都收割着敌人的灵魂……',
+                emoji: '💃'
+            },
+            {
+                id: 'ssr_007',
+                name: '极光之心',
+                rarity: 'ssr',
+                story: '在世界的尽头，极光如同神明的画笔，在天空中描绘着希望。据说，触摸极光的人将获得永恒的祝福……',
+                emoji: '🌈'
+            },
+            {
+                id: 'ssr_008',
+                name: '凤凰涅槃',
+                rarity: 'ssr',
+                story: '当火焰吞噬一切，凤凰从灰烬中重生。每一次死亡都是新的开始，每一次毁灭都是新的创造……',
+                emoji: '🔥'
+            },
+            {
+                id: 'ssr_009',
+                name: '冰霜女皇',
+                rarity: 'ssr',
+                story: '她统治着永恒的冰原，万物在她面前都会冻结。但在她冰冷的外表下，隐藏着一颗炽热的心……',
+                emoji: '❄️'
+            },
+            {
+                id: 'ssr_010',
+                name: '雷神之锤',
+                rarity: 'ssr',
+                story: '这把锤子蕴含着雷霆之力，只有真正的勇者才能举起它。传说，它将选择拯救世界的英雄……',
+                emoji: '⚡'
+            },
+            // SR 卡牌 - 扩展
+            {
+                id: 'sr_006',
+                name: '时光沙漏',
+                rarity: 'sr',
+                story: '沙漏中的每一粒沙都是一个瞬间。当沙漏翻转，时间就会倒流。但要记住，有些事情无法改变……',
+                emoji: '⏳'
+            },
+            {
+                id: 'sr_007',
+                name: '精灵之泪',
+                rarity: 'sr',
+                story: '精灵的眼泪是最珍贵的宝物。据说，它能治愈任何伤痛，甚至能让死者复生……',
+                emoji: '💧'
+            },
+            {
+                id: 'sr_008',
+                name: '龙之逆鳞',
+                rarity: 'sr',
+                story: '龙的逆鳞是它最脆弱的地方，也是它最强大的力量来源。触碰它的人将面临龙的怒火……',
+                emoji: '🐉'
+            },
+            {
+                id: 'sr_009',
+                name: '天使羽翼',
+                rarity: 'sr',
+                story: '天使的羽毛是纯洁的象征。据说，得到它的人将获得飞翔的能力，甚至能到达天堂……',
+                emoji: '🪶'
+            },
+            {
+                id: 'sr_010',
+                name: '恶魔契约',
+                rarity: 'sr',
+                story: '这份契约能实现任何愿望，但代价是你的灵魂。在签署之前，请三思而后行……',
+                emoji: '📜'
+            },
+            // R 卡牌 - 扩展
+            {
+                id: 'r_005',
+                name: '月光石',
+                rarity: 'r',
+                story: '月光石吸收了月亮的精华，在黑暗中散发着柔和的光芒。据说，它能指引迷路的人找到回家的路……',
+                emoji: '🌙'
+            },
+            {
+                id: 'r_006',
+                name: '风铃草',
+                rarity: 'r',
+                story: '风铃草在风中摇曳，发出清脆的声音。据说，听到它声音的人会忘记烦恼……',
+                emoji: '🌿'
+            },
+            {
+                id: 'r_007',
+                name: '水晶球',
+                rarity: 'r',
+                story: '水晶球能预示未来，但未来并非不可改变。它只是展示了可能性，选择权在你手中……',
+                emoji: '🔮'
+            },
+            {
+                id: 'r_008',
+                name: '古铜钥匙',
+                rarity: 'r',
+                story: '这把钥匙能打开任何锁。但它真正能打开的，是人心中的枷锁……',
+                emoji: '🗝️'
+            },
+            // N 卡牌 - 扩展
+            {
+                id: 'n_006',
+                name: '落叶书签',
+                rarity: 'n',
+                story: '这片落叶夹在书中已经很久了。它见证了无数故事，却从未被人注意……',
+                emoji: '🍂'
+            },
+            {
+                id: 'n_007',
+                name: '旧照片',
+                rarity: 'n',
+                story: '这张照片已经泛黄，但照片中的笑容依然清晰。它记录着一段被遗忘的时光……',
+                emoji: '📷'
+            },
+            {
+                id: 'n_008',
+                name: '干花标本',
+                rarity: 'n',
+                story: '这朵花已经枯萎，但它的美丽被永远定格。它提醒我们，美好的事物总是短暂的……',
+                emoji: '🌸'
+            },
+            {
+                id: 'n_009',
+                name: '褪色信件',
+                rarity: 'n',
+                story: '这封信的字迹已经模糊，但字里行间的情感依然清晰。它承载着一个人的思念……',
+                emoji: '✉️'
+            },
+            {
+                id: 'n_010',
+                name: '生锈徽章',
+                rarity: 'n',
+                story: '这枚徽章曾经代表着荣耀。虽然已经生锈，但它见证的历史永远不会被遗忘……',
+                emoji: '🎖️'
             }
         ];
 
@@ -1396,6 +1784,80 @@
                     { text: '"小心！"艾莉娅抓住你的手，"我们必须离开这里！"', choices: null },
                     { text: '你们成功逃离了裂隙，但你知道，这只是开始。更多的秘密，等待着你去发现……', choices: null }
                 ]
+            },
+            // ==================== 新增章节 ====================
+            {
+                id: 'chapter_4',
+                name: '第三章：暗影来袭',
+                desc: '一股神秘的暗影力量正在侵蚀星轨网络……',
+                requiredCards: 10,
+                story: [
+                    { text: '研究院的警报突然响起，红色的灯光闪烁不停。', choices: null },
+                    { text: '"发生了什么？"你问道。', choices: null },
+                    { text: '"暗影……"艾莉娅的脸色变得苍白，"它们找到了我们。"', choices: null },
+                    { text: '你看到窗外，一片黑暗正在吞噬星空。星星一颗接一颗地熄灭。', choices: null },
+                    { text: '"那些是暗影生物，"院长的声音从广播中传来，"它们以记忆为食。"', choices: null },
+                    { text: '"我们必须保护星轨之心！"艾莉娅拉着你向核心区域跑去。', choices: null },
+                    { text: '一路上，你看到研究员们在奋力抵抗，但暗影似乎无穷无尽。', choices: null },
+                    { text: '"只有集齐足够的记忆碎片，才能启动星轨之心的防御系统。"艾莉娅说道。', choices: null },
+                    { text: '你握紧手中的碎片，感受到它们在共鸣。也许，你就是那个能拯救一切的人。', choices: null },
+                    { text: '"准备好了吗？"艾莉娅看着你，眼中闪烁着坚定的光芒，"我们的战斗，现在开始！"', choices: null }
+                ]
+            },
+            {
+                id: 'chapter_5',
+                name: '第四章：时间回溯',
+                desc: '你获得了回到过去的能力，但改变历史真的好吗？',
+                requiredCards: 15,
+                story: [
+                    { text: '在一次实验中，你意外触发了时间回溯的能力。', choices: null },
+                    { text: '周围的一切开始倒流，你看到了过去的景象。', choices: null },
+                    { text: '"这是……"你惊讶地看着自己的双手，"我回到了过去？"', choices: null },
+                    { text: '你看到了年轻的艾莉娅，她正在和一个陌生的男人交谈。', choices: null },
+                    { text: '"那个男人是谁？"你躲在暗处观察。', choices: null },
+                    { text: '突然，你听到了他们的对话："计划必须成功，否则一切都完了。"', choices: null },
+                    { text: '你意识到，事情并不像表面看起来那么简单。', choices: null },
+                    { text: '当你想要继续偷听时，时间开始加速流动，你被拉回了现在。', choices: null },
+                    { text: '"你看到了什么？"艾莉娅问道，她的眼神中带着一丝不安。', choices: null },
+                    { text: '你犹豫了，不知道是否应该告诉她真相。有些秘密，也许永远都不应该被揭开……', choices: null }
+                ]
+            },
+            {
+                id: 'chapter_6',
+                name: '第五章：真相浮现',
+                desc: '你发现了星轨研究院的惊天秘密……',
+                requiredCards: 20,
+                story: [
+                    { text: '你决定调查那个神秘男人的身份。', choices: null },
+                    { text: '在档案室的深处，你找到了一份被加密的文件。', choices: null },
+                    { text: '"这是……"你破解了密码，看到了令人震惊的内容。', choices: null },
+                    { text: '文件显示，星轨研究院并不是为了保护记忆，而是为了控制它。', choices: null },
+                    { text: '"他们想要抹除所有人的记忆，创造一个全新的世界。"你喃喃自语。', choices: null },
+                    { text: '突然，门被打开了。艾莉娅站在门口，她的眼神冰冷。', choices: null },
+                    { text: '"你发现了我们的秘密。"她的声音没有一丝感情。', choices: null },
+                    { text: '"为什么？"你问道，"为什么要这么做？"', choices: null },
+                    { text: '"因为这是唯一的办法。"艾莉娅说道，"只有抹除记忆，才能终结所有的痛苦。"', choices: null },
+                    { text: '你握紧了手中的碎片，你必须做出选择：是帮助她完成计划，还是阻止她……', choices: null }
+                ]
+            },
+            {
+                id: 'chapter_7',
+                name: '终章：命运抉择',
+                desc: '最终的决战，你将决定世界的命运……',
+                requiredCards: 30,
+                story: [
+                    { text: '你站在星轨之心面前，艾莉娅站在你的对面。', choices: null },
+                    { text: '"做出你的选择吧。"她说道，"是毁灭，还是重生？"', choices: null },
+                    { text: '你回想起这一路的经历，每一个碎片，每一段记忆，都是如此珍贵。', choices: null },
+                    { text: '"记忆……"你说道，"记忆是痛苦的根源，但也是希望的种子。"', choices: null },
+                    { text: '你将手中的碎片全部释放，它们环绕着星轨之心，发出耀眼的光芒。', choices: null },
+                    { text: '"你在做什么？！"艾莉娅惊呼道。', choices: null },
+                    { text: '"我在创造一个新的未来。"你微笑着说道，"一个既不抹除记忆，也不被痛苦束缚的未来。"', choices: null },
+                    { text: '星轨之心开始剧烈震动，无数光芒从球体中涌出，照亮了整个宇宙。', choices: null },
+                    { text: '当光芒散去，你发现自己站在一片星空之下。艾莉娅站在你身边，她的眼中闪烁着泪光。', choices: null },
+                    { text: '"谢谢你。"她轻声说道，"你让我看到了希望。"', choices: null },
+                    { text: '你抬头看向星空，无数星辰在闪烁。你的旅程结束了，但故事才刚刚开始……', choices: null }
+                ]
             }
         ];
 
@@ -1426,6 +1888,94 @@
             }
         ];
 
+        // ==================== 成就系统 ====================
+        const ACHIEVEMENTS_DATA = [
+            {
+                id: 'ach_001',
+                name: '初入星轨',
+                desc: '完成序章',
+                icon: '🌟',
+                condition: (state) => state.completedChapters.includes('chapter_1')
+            },
+            {
+                id: 'ach_002',
+                name: '记忆收集者',
+                desc: '收集10张记忆碎片',
+                icon: '📚',
+                condition: (state) => state.cards.length >= 10
+            },
+            {
+                id: 'ach_003',
+                name: '命运之子',
+                desc: '获得第一张UR碎片',
+                icon: '✨',
+                condition: (state) => state.cards.some(card => card.rarity === 'ur')
+            },
+            {
+                id: 'ach_004',
+                name: '时空旅者',
+                desc: '完成第三章',
+                icon: '🚀',
+                condition: (state) => state.completedChapters.includes('chapter_3')
+            },
+            {
+                id: 'ach_005',
+                name: '抽卡达人',
+                desc: '累计抽卡50次',
+                icon: '🎴',
+                condition: (state) => state.pulls >= 50
+            },
+            {
+                id: 'ach_006',
+                name: '收藏大师',
+                desc: '收集30张记忆碎片',
+                icon: '🏆',
+                condition: (state) => state.cards.length >= 30
+            },
+            {
+                id: 'ach_007',
+                name: '暗影猎手',
+                desc: '完成第四章',
+                icon: '⚔️',
+                condition: (state) => state.completedChapters.includes('chapter_4')
+            },
+            {
+                id: 'ach_008',
+                name: '时间掌控者',
+                desc: '完成第五章',
+                icon: '⏳',
+                condition: (state) => state.completedChapters.includes('chapter_5')
+            },
+            {
+                id: 'ach_009',
+                name: '真相揭示者',
+                desc: '完成第六章',
+                icon: '🔍',
+                condition: (state) => state.completedChapters.includes('chapter_6')
+            },
+            {
+                id: 'ach_010',
+                name: '命运抉择者',
+                desc: '完成终章',
+                icon: '🌟',
+                condition: (state) => state.completedChapters.includes('chapter_7')
+            },
+            {
+                id: 'ach_011',
+                name: '星币大亨',
+                desc: '拥有5000星币',
+                icon: '💰',
+                condition: (state) => state.coins >= 5000
+            },
+            {
+                id: 'ach_012',
+                name: '时间商人',
+                desc: '拥有50时间之沙',
+                icon: '⌛',
+                condition: (state) => state.timeSand >= 50
+            }
+        ];
+
         // ==================== 游戏状态 ====================
         let gameState = {
             coins: 1000,
@@ -1436,19 +1986,9 @@
             completedChapters: [],
             unlockedChapters: ['chapter_1', 'chapter_2', 'chapter_3'],
             currentStory: null,
-            currentStoryPart: 0
+            currentStoryPart: 0,
+            unlockedAchievements: []
         };
-
-        // ==================== 开始游戏 ====================
-        function startGame() {
-            const welcomeScreen = document.getElementById('welcome-screen');
-            welcomeScreen.style.transition = 'opacity 0.5s ease';
-            welcomeScreen.style.opacity = '0';
-
-            setTimeout(() => {
-                welcomeScreen.style.display = 'none';
-            }, 500);
-        }
 
         // ==================== 初始化 ====================
         function init() {
@@ -1459,7 +1999,6 @@
 
         // 创建星空背景
         function createStars() {
-            // 为主页面创建星星
             const starsContainer = document.getElementById('stars');
             const starCount = 100;
 
@@ -1475,24 +2014,6 @@
                     animation-delay: ${Math.random() * 3}s;
                 `;
                 starsContainer.appendChild(star);
-            }
-
-            // 为欢迎界面创建星星
-            const welcomeStars = document.querySelector('#welcome-screen .stars');
-            if (welcomeStars) {
-                for (let i = 0; i < 50; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.cssText = `
-                        left: ${Math.random() * 100}%;
-                        top: ${Math.random() * 100}%;
-                        width: ${Math.random() * 3 + 1}px;
-                        height: ${Math.random() * 3 + 1}px;
-                        --duration: ${Math.random() * 3 + 2}s;
-                        animation-delay: ${Math.random() * 3}s;
-                    `;
-                    welcomeStars.appendChild(star);
-                }
             }
         }
 
@@ -1530,9 +2051,10 @@
                 'gacha': 1,
                 'cards': 2,
                 'story': 3,
-                'exchange': 4
+                'exchange': 4,
+                'achievements': 5
             };
-            if (pageMap[pageName] !== undefined) {
+            if (pageMap[pageName] !== undefined && navItems[pageMap[pageName]]) {
                 navItems[pageMap[pageName]].classList.add('active');
             }
 
@@ -1545,6 +2067,8 @@
                 renderExchange('shop');
             } else if (pageName === 'home') {
                 updateStats();
+            } else if (pageName === 'achievements') {
+                renderAchievements();
             }
         }
 
@@ -1558,6 +2082,57 @@
         function updateStats() {
             document.getElementById('stat-cards').textContent = gameState.cards.length;
             document.getElementById('stat-pulls').textContent = gameState.pulls;
+        }
+
+        // ==================== 成就系统 ====================
+        function checkAchievements() {
+            ACHIEVEMENTS_DATA.forEach(achievement => {
+                if (!gameState.unlockedAchievements.includes(achievement.id) && achievement.condition(gameState)) {
+                    gameState.unlockedAchievements.push(achievement.id);
+                    showAchievementPopup(achievement);
+                    saveGameState();
+                }
+            });
+        }
+
+        function showAchievementPopup(achievement) {
+            // 创建成就弹窗
+            const popup = document.createElement('div');
+            popup.className = 'achievement-popup';
+            popup.innerHTML = `
+                <div class="achievement-icon">${achievement.icon}</div>
+                <div class="achievement-title">成就解锁！</div>
+                <div class="achievement-desc">${achievement.name}<br>${achievement.desc}</div>
+                <button class="btn btn-primary" onclick="this.parentElement.remove()">太棒了！</button>
+            `;
+            document.body.appendChild(popup);
+
+            // 显示弹窗
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 100);
+
+            // 3秒后自动关闭
+            setTimeout(() => {
+                popup.classList.remove('show');
+                setTimeout(() => popup.remove(), 500);
+            }, 3000);
+        }
+
+        function renderAchievements() {
+            const container = document.getElementById('achievements-grid');
+            if (!container) return;
+
+            container.innerHTML = ACHIEVEMENTS_DATA.map(achievement => {
+                const isUnlocked = gameState.unlockedAchievements.includes(achievement.id);
+                return `
+                    <div class="achievement-item ${isUnlocked ? 'unlocked' : 'locked'}">
+                        <div class="achievement-item-icon">${achievement.icon}</div>
+                        <div class="achievement-item-name">${achievement.name}</div>
+                        <div class="achievement-item-desc">${achievement.desc}</div>
+                    </div>
+                `;
+            }).join('');
         }
 
         // ==================== 抽卡系统 ====================
@@ -1611,6 +2186,7 @@
             saveGameState();
             updateUI();
             showGachaResults([result]);
+            checkAchievements();
         }
 
         function pullTen() {
@@ -1635,6 +2211,7 @@
             saveGameState();
             updateUI();
             showGachaResults(results);
+            checkAchievements();
         }
 
         function showGachaResults(results) {
@@ -1819,6 +2396,7 @@
                         showNotification('章节完成！获得奖励 ✦ 200', 'success');
                         gameState.coins += 200;
                         updateUI();
+                        checkAchievements();
                     }
                     closeStoryPlayer();
                 }, 2000);
@@ -1840,6 +2418,7 @@
                     showNotification('章节完成！获得奖励 ✦ 200', 'success');
                     gameState.coins += 200;
                     updateUI();
+                    checkAchievements();
                 }
                 closeStoryPlayer();
                 return;
@@ -1963,8 +2542,88 @@
             }, 3000);
         }
 
+        // ==================== 设置系统 ====================
+        function showSettings() {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay active';
+            modal.innerHTML = `
+                <div class="modal">
+                    <div class="modal-title">⚙️ 游戏设置</div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-weight: bold; margin-bottom: 8px;">游戏数据</div>
+                            <div style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+                                收集碎片：${gameState.cards.length}<br>
+                                抽卡次数：${gameState.pulls}<br>
+                                完成章节：${gameState.completedChapters.length}<br>
+                                解锁成就：${gameState.unlockedAchievements.length}
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="font-weight: bold; margin-bottom: 8px;">操作</div>
+                            <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="exportSave()">
+                                导出存档
+                            </button>
+                            <button class="btn btn-secondary" style="width: 100%; margin-bottom: 10px;" onclick="importSave()">
+                                导入存档
+                            </button>
+                            <button class="btn btn-secondary" style="width: 100%; background: rgba(231, 76, 60, 0.3); border-color: #e74c3c;" onclick="resetGame()">
+                                重置游戏
+                            </button>
+                        </div>
+                    </div>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">关闭</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function exportSave() {
+            const saveData = JSON.stringify(gameState);
+            const blob = new Blob([saveData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'star-trail-save.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showNotification('存档已导出', 'success');
+        }
+
+        function importSave() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const saveData = JSON.parse(event.target.result);
+                        gameState = { ...gameState, ...saveData };
+                        saveGameState();
+                        updateUI();
+                        showNotification('存档已导入', 'success');
+                    } catch (error) {
+                        showNotification('存档文件无效', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+        function resetGame() {
+            if (confirm('确定要重置游戏吗？所有进度将丢失！')) {
+                localStorage.removeItem('starTrailSave');
+                location.reload();
+            }
+        }
+
         // ==================== 初始化游戏 ====================
         init();
+        checkAchievements();
     </script>
 </body>
 </html>
