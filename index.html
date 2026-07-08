@@ -1752,15 +1752,30 @@
             const nextBtn = document.getElementById('story-next-btn');
             if (part.choices) {
                 nextBtn.style.display = 'none';
+            } else if (gameState.currentStoryPart >= story.story.length - 1) {
+                // 最后一部分，延迟自动关闭
+                nextBtn.style.display = 'none';
+                setTimeout(() => {
+                    // 完成章节
+                    if (!gameState.completedChapters.includes(story.id)) {
+                        gameState.completedChapters.push(story.id);
+                        saveGameState();
+                        showNotification('章节完成！获得奖励 ✦ 200', 'success');
+                        gameState.coins += 200;
+                        updateUI();
+                    }
+                    closeStoryPlayer();
+                }, 2000);
             } else {
                 nextBtn.style.display = 'block';
-                nextBtn.textContent = gameState.currentStoryPart >= story.story.length - 1 ? '完成' : '继续';
+                nextBtn.textContent = '继续';
             }
         }
 
         function nextStoryPart() {
             const story = gameState.currentStory;
 
+            // 如果已经是最后一部分，直接退出
             if (gameState.currentStoryPart >= story.story.length - 1) {
                 // 完成章节
                 if (!gameState.completedChapters.includes(story.id)) {
